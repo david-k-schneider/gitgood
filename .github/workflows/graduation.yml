@@ -1,0 +1,111 @@
+name: "🎓 Graduation Check"
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  issues: write
+
+jobs:
+  graduation-check:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.title, 'Graduation')
+    steps:
+      - name: Check Milestones and Graduate
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueNumber = context.payload.issue.number;
+
+            // Check for merged PRs as evidence of completing the journey
+            const { data: pulls } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'closed',
+              sort: 'created',
+              direction: 'desc'
+            });
+
+            const mergedPRs = pulls.filter(pr => pr.merged_at);
+            const hasMergedPR = mergedPRs.length > 0;
+
+            // Check for closed milestone issues
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'milestone',
+              state: 'all'
+            });
+
+            const milestoneCount = issues.filter(i => i.number !== issueNumber).length;
+
+            const badge = `
+            # 🎓 Congratulations, You've Graduated!
+
+            ---
+
+            ## 🏆 Your GitHub Learning Journey — Complete
+
+            | Metric | Result |
+            |--------|--------|
+            | **Milestone Issues Created** | ${milestoneCount} |
+            | **Pull Requests Merged** | ${mergedPRs.length} |
+            | **Status** | ${hasMergedPR ? '✅ GRADUATED' : '⚠️ Almost there — merge a PR to complete'} |
+
+            ---
+
+            ## 🗺️ Features You Experienced
+
+            | Feature | What You Did | Customer Value Prop |
+            |---------|-------------|-------------------|
+            | **Repositories** | Forked and cloned this sandbox | Central source of truth for code |
+            | **Issues** | Planned work and tracked milestones | Integrated project planning |
+            | **Branching** | Created feature branches for changes | Parallel development without risk |
+            | **Copilot** | Generated code with AI assistance | 55% faster task completion |
+            | **Commits** | Saved work with meaningful history | Full audit trail and rollback |
+            | **Pull Requests** | Proposed and reviewed changes | Quality gates and collaboration |
+            | **Actions CI** | Ran automated tests on every push | Built-in CI/CD, no extra tools |
+            | **Code Review** | Reviewed diffs and addressed feedback | Defect prevention at scale |
+            | **Security** | Scanned for vulnerabilities | Shift-left security (GHAS) |
+            | **Deployment** | Merged code to main | Ship with confidence |
+
+            ---
+
+            ## 🎤 You're Ready
+
+            You've done what most sales reps never do — you've **built something real** on the platform you sell. That gives you:
+
+            - **Credibility**: You can speak from experience, not just slides
+            - **Empathy**: You understand the developer workflow firsthand
+            - **Stories**: "When I built my own webhook integration on GitHub..."
+            - **Confidence**: You know the platform because you've used the platform
+
+            ---
+
+            ## 📣 What's Next?
+
+            1. **Present your project** — Show your team what you built. A 5-minute demo is worth 50 slides.
+            2. **Extend your integration** — Add features, try Copilot Chat, explore the Actions Marketplace.
+            3. **Help a teammate** — Guide another rep through the sandbox. Teaching reinforces learning.
+            4. **Use it in the field** — Next time a customer asks "but does it really work?", you can say "let me show you what I built."
+
+            ---
+
+            *You earned this. Now go sell with conviction.* 🚀
+            `;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: badge
+            });
+
+            // Add graduation label
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              labels: ['🎓 graduated']
+            });

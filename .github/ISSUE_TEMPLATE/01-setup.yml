@@ -1,0 +1,38 @@
+name: "Milestone 1: Setup Complete"
+description: "Track your progress on forking, cloning, and running the project"
+title: "Milestone 1: Setup Complete"
+labels: ["milestone", "setup"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🚀 Milestone 1: Fork & Setup
+
+        Complete the steps below to get the project running on your machine.
+
+        **💡 Sales Context**: Repositories are the atomic unit of GitHub. Every customer conversation starts here. When you fork a repo, you're creating an independent copy — this is how open source contribution works, and how GitHub enables collaboration across organizational boundaries.
+
+  - type: checkboxes
+    id: setup-tasks
+    attributes:
+      label: Setup Checklist
+      options:
+        - label: Forked this repository to my GitHub account
+        - label: Cloned my fork locally (`git clone ...`)
+        - label: Ran `npm install` successfully
+        - label: Ran `npm start` and saw the server start message
+        - label: Visited `http://localhost:3000/health` and saw the health check response
+
+  - type: textarea
+    id: observations
+    attributes:
+      label: What did you notice?
+      description: "Jot down anything interesting, confusing, or worth discussing with your team."
+      placeholder: "e.g., I noticed the project has a .github folder with workflows..."
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### ➡️ Next Step
+        When you've checked all the boxes, move on to **Milestone 2: Plan with Issues** — create a new Issue using that template.

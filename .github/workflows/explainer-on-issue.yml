@@ -1,0 +1,68 @@
+name: "🔍 Explainer: Issue Created"
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  explain-issues:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, 'milestone')
+    steps:
+      - name: Post Issue Explainer
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueTitle = context.payload.issue.title;
+            const issueNumber = context.payload.issue.number;
+
+            const explainer = `
+            ## 🔍 What Just Happened
+
+            You created a GitHub Issue! Here's what that means and why it matters.
+
+            ---
+
+            ### 📋 The Technical Action
+            You opened Issue #${issueNumber} — a trackable unit of work in your repository. Issues can be assigned, labeled, linked to Pull Requests, and organized on Project boards.
+
+            ### 💼 Why Customers Care
+            **Integrated project planning** is one of GitHub's strongest differentiators. Unlike external tools (Jira, ServiceNow, Asana), GitHub Issues live *alongside the code*. When a developer types \`Closes #${issueNumber}\` in a Pull Request, the Issue is automatically closed when the PR merges. This traceability — from idea to implementation to deployment — is what enterprise customers mean when they say "inner loop productivity."
+
+            ### 🎯 Talk Track
+            > "GitHub Issues aren't just a ticket system. They're woven into the developer workflow. When a developer references an Issue in their commit or PR, everything links together automatically — planning, code, review, and deployment are connected. That's why teams consolidate from 5 tools to 1."
+
+            ### 🔗 Related Features to Explore
+            - **Labels**: Categorize Issues by type, priority, or area
+            - **Milestones**: Group Issues into release targets
+            - **Projects**: Kanban or table views for project management
+            - **Tasklists**: Break Issues into sub-tasks with tracking
+
+            ---
+
+            <details>
+            <summary>💡 <strong>Did you know?</strong></summary>
+
+            GitHub Issues support **Markdown**, so you can format descriptions with headers, code blocks, tables, and checklists. Try editing this Issue and adding a task list:
+
+            \`\`\`markdown
+            - [ ] First task
+            - [x] Completed task
+            \`\`\`
+
+            Issues also support **templates** (like the one you used!), which help teams standardize how work is requested — bug reports, feature requests, security disclosures, etc.
+            </details>
+
+            ---
+            ➡️ **Next step**: Follow the checklist in this Issue, then move on to your next milestone!
+            `;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: explainer
+            });

@@ -1,0 +1,48 @@
+name: "Milestone 3: Branch & Build with Copilot"
+description: "Create a branch and use Copilot to write your webhook handler"
+title: "Milestone 3: Branch & Build with Copilot"
+labels: ["milestone", "copilot", "coding"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🤖 Milestone 3: Branch & Build with Copilot
+
+        This is the main coding milestone. You'll create a feature branch and use GitHub Copilot as your AI pair programmer.
+
+        **💡 Sales Context**: Branching is how development teams work on features in parallel without stepping on each other's toes. Combined with Copilot, developers stay in flow — research shows 55% faster task completion. When selling to engineering leaders, the productivity story is: less context switching, fewer boilerplate hours, more time on creative problem-solving.
+
+  - type: checkboxes
+    id: branch-tasks
+    attributes:
+      label: Branch & Build Checklist
+      options:
+        - label: "Created a feature branch: `git checkout -b feature/webhook-handler`"
+        - label: Opened `src/webhook.js` in my editor with Copilot enabled
+        - label: Used Copilot to help complete the TODO sections in `webhook.js`
+        - label: Opened `src/notify.js` and used Copilot for the notification logic
+        - label: Tested locally with `npm start` and sent a test webhook
+
+  - type: textarea
+    id: copilot-experience
+    attributes:
+      label: How was the Copilot experience?
+      description: "What surprised you? What worked well? What would you tell a customer?"
+      placeholder: "e.g., Copilot suggested the entire validation function after I typed a comment..."
+
+  - type: textarea
+    id: test-command
+    attributes:
+      label: Test your webhook
+      description: "Paste the curl command you used to test (or the result)."
+      placeholder: |
+        curl -X POST http://localhost:3000/webhook \
+          -H "Content-Type: application/json" \
+          -d '{"source": "my-test", "message": "Hello from the sandbox!"}'
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### ➡️ Next Step
+        Commit your changes and move on to **Milestone 4: First Commit**, then **Milestone 5: Open a Pull Request**.

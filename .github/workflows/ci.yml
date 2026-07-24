@@ -1,0 +1,104 @@
+name: "⚙️ CI: Run Tests"
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+  explain-ci:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    needs: test
+    steps:
+      - name: Post CI Explainer
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const testResult = '${{ needs.test.result }}';
+            const statusEmoji = testResult === 'success' ? '✅' : '❌';
+            const statusText = testResult === 'success'
+              ? 'All tests passed! Your code is ready for review.'
+              : 'Some tests failed. Check the logs to see what went wrong.';
+
+            const explainer = `
+            ## 🔍 CI Explainer: Automated Testing
+
+            ${statusEmoji} **${statusText}**
+
+            ---
+
+            ### ⚙️ The Technical Action
+            GitHub Actions ran your test suite automatically when you pushed to this PR. This is **Continuous Integration (CI)** — every code change is validated before it can be merged.
+
+            ### 💼 Why Customers Care
+            **GitHub Actions is CI/CD built into the platform.** No separate Jenkins server, no CircleCI subscription, no context switching between tools. Key selling points:
+
+            | Feature | Value |
+            |---------|-------|
+            | **15,000+ marketplace actions** | Reusable building blocks for any workflow |
+            | **Matrix builds** | Test across multiple OS/language versions simultaneously |
+            | **Self-hosted runners** | Run CI on your own infrastructure for compliance |
+            | **Reusable workflows** | Standardize CI across hundreds of repos |
+            | **Built-in secrets** | Securely store API keys and credentials |
+
+            ### 🎯 Talk Track
+            > "GitHub Actions replaces the need for a separate CI/CD tool. Tests run on every push, deployments happen on merge, and it's all configured in a YAML file that lives in the repo alongside the code. Teams go from commit to production without leaving GitHub."
+
+            ### 📊 What Happened Behind the Scenes
+            1. You pushed code to your PR branch
+            2. GitHub detected the \`.github/workflows/ci.yml\` configuration
+            3. A runner was provisioned automatically
+            4. Your dependencies were installed and tests were executed
+            5. The result was reported back as a check on this PR
+
+            ---
+
+            <details>
+            <summary>💡 <strong>The Actions Ecosystem</strong></summary>
+
+            The workflow that ran your tests is defined in \`.github/workflows/ci.yml\`. Open that file to see how it works.
+
+            GitHub Actions can do much more than testing:
+            - **Deploy** to cloud providers (AWS, Azure, GCP)
+            - **Build and publish** Docker containers
+            - **Generate** release notes and changelogs
+            - **Notify** teams via Slack, email, or MS Teams
+            - **Enforce** code quality standards (linting, formatting)
+            - **Scan** for security vulnerabilities
+
+            Customers often start with CI and expand to full CD within months.
+            </details>
+
+            ---
+            ➡️ **Next step**: ${testResult === 'success' ? 'Review your code changes and prepare to merge!' : 'Check the test logs, fix the failing tests, and push again.'}
+            `;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              body: explainer
+            });

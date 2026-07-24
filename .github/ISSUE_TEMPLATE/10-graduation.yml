@@ -1,0 +1,55 @@
+name: "Milestone 10: Graduation"
+description: "Complete the learning path and earn your badge"
+title: "Milestone 10: Graduation 🎓"
+labels: ["milestone", "graduation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🎓 Milestone 10: Graduation
+
+        Congratulations! You've experienced the full GitHub platform by building something real.
+
+        **💡 Sales Context**: You now have a hands-on understanding of every major GitHub feature. This isn't theoretical knowledge — you've lived the developer experience. That gives you credibility in every customer conversation.
+
+  - type: checkboxes
+    id: graduation-checklist
+    attributes:
+      label: Verify your journey
+      options:
+        - label: "✅ Forked and cloned a repository (Repos)"
+        - label: "✅ Created and managed Issues (Project Planning)"
+        - label: "✅ Created a feature branch (Branching Strategy)"
+        - label: "✅ Used Copilot to write code (AI Pair Programming)"
+        - label: "✅ Committed with meaningful messages (Version Control)"
+        - label: "✅ Opened a Pull Request (Code Review & Collaboration)"
+        - label: "✅ Watched CI run with Actions (Automation)"
+        - label: "✅ Reviewed and addressed feedback (Quality Gates)"
+        - label: "✅ Explored security scanning (GHAS)"
+        - label: "✅ Merged and deployed (Ship with Confidence)"
+
+  - type: textarea
+    id: top-takeaways
+    attributes:
+      label: "Your top 3 takeaways"
+      description: "What are the three most important things you learned that will help you in customer conversations?"
+      placeholder: |
+        1. Copilot doesn't just autocomplete — it understands context...
+        2. Actions CI running on every PR was eye-opening because...
+        3. Having Issues linked to PRs linked to deployments shows...
+
+  - type: textarea
+    id: customer-pitch
+    attributes:
+      label: "Your 30-second pitch"
+      description: "Based on your experience, write a 30-second pitch for GitHub to a CTO or VP Engineering."
+      placeholder: "GitHub brings your code, planning, automation, and security into one platform..."
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### 🏆 What happens next
+        When you submit this issue, a GitHub Action will check your milestones and post your graduation summary. Well done!
+
+        **Share your experience**: Consider presenting what you built to your team. Nothing sells GitHub better than a live demo of something you built yourself.

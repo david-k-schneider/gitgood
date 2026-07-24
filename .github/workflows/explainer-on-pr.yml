@@ -1,0 +1,71 @@
+name: "🔍 Explainer: Pull Request Opened"
+
+on:
+  pull_request:
+    types: [opened]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  explain-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post PR Explainer
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+
+            const explainer = `
+            ## 🔍 What Just Happened
+
+            You opened a Pull Request! This is where the magic of collaboration happens.
+
+            ---
+
+            ### 🔀 The Technical Action
+            You proposed merging your changes from \`${pr.head.ref}\` into \`${pr.base.ref}\`. A Pull Request is a formal request to review, discuss, and approve code changes before they're merged into the main codebase.
+
+            ### 💼 Why Customers Care
+            **Pull Requests are the collaboration hub for modern software teams.** They combine:
+            - 👀 **Code review** — peers review every line of code before it ships
+            - 🤖 **Automated checks** — CI/CD runs tests automatically (watch the Checks tab!)
+            - 💬 **Discussion** — threaded conversations on specific lines of code
+            - ✅ **Approval workflows** — required reviewers before merge (governance without friction)
+
+            For enterprise customers, PRs are also a **compliance mechanism**. Branch protection rules can require:
+            - A minimum number of approving reviews
+            - All CI checks to pass
+            - Specific teams or individuals to approve
+            - Signed commits
+            - Up-to-date branches
+
+            ### 🎯 Talk Track
+            > "Pull Requests are where quality and velocity coexist. Developers get peer review, automated testing, and security scanning on every change — without leaving their workflow. For compliance teams, branch protection rules ensure no code reaches production without the right approvals. It's governance that developers actually like."
+
+            ### 🔗 What to Watch For
+            - **Checks tab**: Your CI workflow should start running automatically
+            - **Files changed tab**: See the diff of everything you've changed
+            - **Copilot review**: If enabled, Copilot will post a code review
+
+            ---
+
+            <details>
+            <summary>💡 <strong>Pro tip: Linking Issues and PRs</strong></summary>
+
+            If you type \`Closes #N\` (where N is an Issue number) in your PR description, the Issue will automatically close when this PR is merged. This creates a traceable link from planning → implementation → deployment.
+
+            Try editing your PR description to include a reference to one of your milestone Issues!
+            </details>
+
+            ---
+            ➡️ **Next step**: Check the **Checks** tab to see your CI workflow run, then review the code changes!
+            `;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              body: explainer
+            });
