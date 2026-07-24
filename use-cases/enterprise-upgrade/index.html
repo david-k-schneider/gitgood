@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Enterprise — What You're Missing</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app" id="app">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <svg class="github-logo" viewBox="0 0 16 16" width="32" height="32" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        <h1>Enterprise Security Visibility</h1>
+      </div>
+      <div class="header-right">
+        <button class="btn-customize" onclick="openCustomizer()">⚙️ Customize for Customer</button>
+        <button class="btn-theme" onclick="toggleTheme()">🌓</button>
+      </div>
+    </header>
+
+    <!-- Customer Banner -->
+    <section class="customer-banner" id="customerBanner">
+      <div class="banner-content">
+        <h2 id="orgName">Your Organization</h2>
+        <div class="banner-stats">
+          <span class="stat"><strong id="repoCount">48</strong> repositories</span>
+          <span class="stat"><strong id="devCount">85</strong> developers</span>
+          <span class="stat">Plan: <strong id="currentPlan">GitHub Teams</strong></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teams View (default) -->
+    <section class="view teams-view" id="teamsView">
+      <div class="view-header">
+        <h2>📋 Your Organization Today</h2>
+        <p class="subtitle">GitHub Teams — what you can see right now</p>
+      </div>
+
+      <div class="repo-grid" id="repoGrid">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="summary-bar teams-summary">
+        <div class="summary-item ok">
+          <span class="summary-icon">✅</span>
+          <span class="summary-label">All repos visible</span>
+        </div>
+        <div class="summary-item ok">
+          <span class="summary-icon">✅</span>
+          <span class="summary-label">Collaborators managed</span>
+        </div>
+        <div class="summary-item ok">
+          <span class="summary-icon">✅</span>
+          <span class="summary-label">Basic Dependabot alerts on</span>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <p class="cta-question">Everything looks fine, right?</p>
+        <button class="btn-unlock" id="unlockBtn" onclick="unlockEnterprise()">
+          <span class="lock-icon">🔓</span>
+          <span class="btn-text">Unlock Enterprise View</span>
+          <span class="btn-subtext">See what you're missing</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Enterprise View (revealed) -->
+    <section class="view enterprise-view hidden" id="enterpriseView">
+      <div class="view-header enterprise-header">
+        <h2>🔍 What Enterprise Would Show You</h2>
+        <p class="subtitle">The security posture you can't see on Teams</p>
+      </div>
+
+      <!-- Critical Alerts Banner -->
+      <div class="alerts-banner" id="alertsBanner">
+        <div class="alert critical">
+          <span class="alert-icon">🔴</span>
+          <span class="alert-count" id="vulnCount">5</span>
+          <span class="alert-label">Critical vulnerabilities in production dependencies</span>
+        </div>
+        <div class="alert high">
+          <span class="alert-icon">⚠️</span>
+          <span class="alert-count" id="secretCount">12</span>
+          <span class="alert-label">Leaked secrets committed across your org</span>
+        </div>
+        <div class="alert warning">
+          <span class="alert-icon">👻</span>
+          <span class="alert-count" id="auditGap">90</span>
+          <span class="alert-label">days of admin actions with no audit trail</span>
+        </div>
+        <div class="alert info">
+          <span class="alert-icon">🚫</span>
+          <span class="alert-count" id="unprotectedCount">7</span>
+          <span class="alert-label">repos with no branch protection on main</span>
+        </div>
+      </div>
+
+      <!-- Repo Grid with findings -->
+      <div class="repo-grid enterprise-grid" id="enterpriseRepoGrid">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Feature Breakdown Tabs -->
+      <div class="feature-tabs">
+        <div class="tab-headers">
+          <button class="tab-btn active" data-tab="security" onclick="switchTab('security')">🔒 Security</button>
+          <button class="tab-btn" data-tab="governance" onclick="switchTab('governance')">📜 Governance</button>
+          <button class="tab-btn" data-tab="ai" onclick="switchTab('ai')">🤖 AI Multiplier</button>
+          <button class="tab-btn" data-tab="roi" onclick="switchTab('roi')">💰 ROI</button>
+        </div>
+
+        <!-- Security Tab -->
+        <div class="tab-content active" id="tab-security">
+          <div class="findings-grid">
+            <div class="finding-card critical">
+              <div class="finding-header">
+                <span class="severity critical">CRITICAL</span>
+                <span class="finding-type">Secret Scanning</span>
+              </div>
+              <h3>AWS Access Key exposed in <code>.env</code></h3>
+              <p class="finding-detail">Committed 23 days ago by a contributor. Still active. With <strong>push protection</strong>, this would have been blocked before it reached the repo.</p>
+              <div class="finding-meta">
+                <span>📁 api-service/.env</span>
+                <span>⏰ 23 days exposed</span>
+              </div>
+            </div>
+
+            <div class="finding-card critical">
+              <div class="finding-header">
+                <span class="severity critical">CRITICAL</span>
+                <span class="finding-type">Code Scanning (CodeQL)</span>
+              </div>
+              <h3>SQL Injection in user input handler</h3>
+              <p class="finding-detail">User-supplied input passed directly to database query without sanitization. Exploitable in production.</p>
+              <div class="finding-meta">
+                <span>📁 backend/routes/users.js:47</span>
+                <span>🎯 CWE-89</span>
+              </div>
+            </div>
+
+            <div class="finding-card high">
+              <div class="finding-header">
+                <span class="severity high">HIGH</span>
+                <span class="finding-type">Dependency Review</span>
+              </div>
+              <h3>Known vulnerable version of <code>jsonwebtoken</code></h3>
+              <p class="finding-detail">Version 8.5.1 has a known signature bypass vulnerability (CVE-2022-23529). Fix available: upgrade to 9.0.0+</p>
+              <div class="finding-meta">
+                <span>📦 package-lock.json</span>
+                <span>🔄 Auto-fix available</span>
+              </div>
+            </div>
+
+            <div class="finding-card high">
+              <div class="finding-header">
+                <span class="severity high">HIGH</span>
+                <span class="finding-type">Secret Scanning</span>
+              </div>
+              <h3>Slack Webhook URL in source code</h3>
+              <p class="finding-detail">Hardcoded Slack incoming webhook URL allows anyone to post messages to your internal channels.</p>
+              <div class="finding-meta">
+                <span>📁 notifications/config.js</span>
+                <span>⏰ 45 days exposed</span>
+              </div>
+            </div>
+
+            <div class="finding-card medium">
+              <div class="finding-header">
+                <span class="severity medium">MEDIUM</span>
+                <span class="finding-type">Code Scanning</span>
+              </div>
+              <h3>Insecure random number generation</h3>
+              <p class="finding-detail">Using <code>Math.random()</code> for session token generation. Predictable values could allow session hijacking.</p>
+              <div class="finding-meta">
+                <span>📁 auth/session.js:12</span>
+                <span>🎯 CWE-338</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Governance Tab -->
+        <div class="tab-content" id="tab-governance">
+          <div class="audit-timeline">
+            <h3>📜 Events You Can't See Today</h3>
+            <p class="audit-note">On Teams, these happened with no record. On Enterprise, every action is logged and streamable to your SIEM.</p>
+
+            <div class="timeline">
+              <div class="timeline-event danger">
+                <span class="event-time">2:34 AM, last Tuesday</span>
+                <span class="event-action">Repository <code>payments-api</code> deleted</span>
+                <span class="event-detail">By: unknown (no audit log)</span>
+              </div>
+              <div class="timeline-event warning">
+                <span class="event-time">11:15 PM, 3 weeks ago</span>
+                <span class="event-action">Admin permissions granted to external collaborator</span>
+                <span class="event-detail">Full org admin access given to contractor email</span>
+              </div>
+              <div class="timeline-event warning">
+                <span class="event-time">4:02 PM, last month</span>
+                <span class="event-action">Branch protection disabled on <code>main</code></span>
+                <span class="event-detail">production-api repo — protection removed, not re-enabled</span>
+              </div>
+              <div class="timeline-event info">
+                <span class="event-time">Various dates</span>
+                <span class="event-action">500MB+ repository clones from unrecognized IPs</span>
+                <span class="event-detail">12 instances in the last 30 days — no IP allow list to block them</span>
+              </div>
+            </div>
+
+            <div class="governance-features">
+              <h3>What Enterprise Governance Unlocks</h3>
+              <div class="feature-grid">
+                <div class="feature-item">
+                  <span class="feature-icon">📊</span>
+                  <h4>Audit Log Streaming</h4>
+                  <p>Stream every event to Splunk, Datadog, or Azure Sentinel in real-time</p>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">🏛️</span>
+                  <h4>Enterprise Policies</h4>
+                  <p>Enforce consistent rules across all orgs — no more per-team variance</p>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">🌐</span>
+                  <h4>IP Allow Lists</h4>
+                  <p>Restrict access to your code by network location</p>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">🔐</span>
+                  <h4>Custom Repository Roles</h4>
+                  <p>Fine-grained permissions beyond the 5 base roles</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Tab -->
+        <div class="tab-content" id="tab-ai">
+          <div class="ai-comparison">
+            <h3>🤖 Copilot: Business vs. Enterprise</h3>
+
+            <div class="comparison-grid">
+              <div class="comparison-card current">
+                <h4>What You Have (Copilot Business)</h4>
+                <ul>
+                  <li>✅ Code completions</li>
+                  <li>✅ Copilot Chat</li>
+                  <li>✅ CLI assistance</li>
+                  <li class="missing">❌ No knowledge bases</li>
+                  <li class="missing">❌ No org-wide custom instructions</li>
+                  <li class="missing">❌ No usage analytics</li>
+                  <li class="missing">❌ No fine-tuned models</li>
+                </ul>
+              </div>
+
+              <div class="comparison-card upgrade">
+                <h4>What You'd Get (Copilot Enterprise)</h4>
+                <ul>
+                  <li>✅ Everything in Business, plus:</li>
+                  <li class="new">🆕 Knowledge bases on YOUR codebase</li>
+                  <li class="new">🆕 Org-wide custom instructions</li>
+                  <li class="new">🆕 Usage analytics and seat optimization</li>
+                  <li class="new">🆕 Model selection and fine-tuning</li>
+                  <li class="new">🆕 Bing-powered web search in Chat</li>
+                  <li class="new">🆕 Pull request summaries</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="ai-callout">
+              <p><strong>The difference in practice:</strong> On Business, Copilot suggests generic patterns. On Enterprise, Copilot knows your architecture, your naming conventions, your internal APIs. It's the difference between a contractor who just started and a senior dev who's been on the team for years.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROI Tab -->
+        <div class="tab-content" id="tab-roi">
+          <div class="roi-calculator">
+            <h3>💰 The Math: Upgrade Cost vs. Risk Cost</h3>
+
+            <div class="roi-inputs">
+              <div class="input-group">
+                <label>Number of developers</label>
+                <input type="number" id="roiDevCount" value="85" onchange="calculateROI()">
+              </div>
+              <div class="input-group">
+                <label>Current plan cost (per user/month)</label>
+                <input type="number" id="roiCurrentCost" value="4" onchange="calculateROI()">
+              </div>
+              <div class="input-group">
+                <label>Enterprise cost (per user/month)</label>
+                <input type="number" id="roiEnterpriseCost" value="21" onchange="calculateROI()">
+              </div>
+            </div>
+
+            <div class="roi-results">
+              <div class="roi-card cost">
+                <h4>Annual Upgrade Cost</h4>
+                <span class="roi-value" id="roiUpgradeCost">$17,340</span>
+                <span class="roi-detail" id="roiUpgradeDetail">85 devs × $17 difference × 12 months</span>
+              </div>
+
+              <div class="roi-card risk">
+                <h4>Average Cost of a Data Breach</h4>
+                <span class="roi-value">$4,450,000</span>
+                <span class="roi-detail">IBM Cost of a Data Breach Report 2023</span>
+              </div>
+
+              <div class="roi-card risk">
+                <h4>Average Cost per Leaked Secret</h4>
+                <span class="roi-value">$1,200,000</span>
+                <span class="roi-detail">GitGuardian State of Secrets Sprawl 2023</span>
+              </div>
+
+              <div class="roi-card highlight">
+                <h4>Break-Even Calculation</h4>
+                <span class="roi-value" id="roiBreakeven">256×</span>
+                <span class="roi-detail" id="roiBreakevenDetail">Enterprise pays for itself 256× over if it prevents ONE breach</span>
+              </div>
+            </div>
+
+            <div class="roi-callout">
+              <p>💡 <strong>The real question isn't "can we afford Enterprise?"</strong><br>
+              It's "can we afford NOT to see what's in our repos?"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reset button -->
+      <div class="reset-section">
+        <button class="btn-reset" onclick="resetToTeams()">← Back to Teams View</button>
+      </div>
+    </section>
+
+    <!-- Customizer Modal -->
+    <div class="modal hidden" id="customizerModal">
+      <div class="modal-content">
+        <h2>⚙️ Customize for Your Customer</h2>
+        <p>Edit these values to match the customer you're presenting to:</p>
+
+        <div class="form-group">
+          <label>Organization Name</label>
+          <input type="text" id="customOrgName" value="Acme Corp">
+        </div>
+        <div class="form-group">
+          <label>Number of Repositories</label>
+          <input type="number" id="customRepoCount" value="48">
+        </div>
+        <div class="form-group">
+          <label>Number of Developers</label>
+          <input type="number" id="customDevCount" value="85">
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn-primary" onclick="applyCustomization()">Apply</button>
+          <button class="btn-secondary" onclick="closeCustomizer()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/calculator.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
