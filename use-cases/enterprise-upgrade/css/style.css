@@ -681,6 +681,30 @@ body {
   cursor: pointer;
 }
 
+/* Disclaimer Bar */
+.disclaimer-bar {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  background: rgba(88, 166, 255, 0.06);
+  border: 1px solid rgba(88, 166, 255, 0.2);
+  border-radius: var(--radius);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.disclaimer-bar a {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+
+.disclaimer-bar a:hover {
+  text-decoration: underline;
+}
+
 /* Connect Form */
 .banner-connect {
   margin-top: 12px;
