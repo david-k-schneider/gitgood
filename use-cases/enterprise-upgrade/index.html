@@ -33,6 +33,13 @@
           <span class="stat">Plan: <strong id="currentPlan">GitHub Teams</strong></span>
         </div>
       </div>
+      <div class="banner-connect">
+        <div class="connect-form" id="connectForm">
+          <input type="text" id="orgInput" placeholder="Enter GitHub org name (e.g. acme-corp)" class="org-input">
+          <button class="btn-connect" onclick="connectToOrg()">🔌 Pull Live Data</button>
+        </div>
+        <div class="connect-status hidden" id="connectStatus"></div>
+      </div>
     </section>
 
     <!-- Teams View (default) -->
@@ -370,6 +377,7 @@
   </div>
 
   <script src="js/data.js"></script>
+  <script src="js/connector.js"></script>
   <script src="js/renderer.js"></script>
   <script src="js/calculator.js"></script>
   <script src="js/app.js"></script>

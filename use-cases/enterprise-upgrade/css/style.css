@@ -681,6 +681,60 @@ body {
   cursor: pointer;
 }
 
+/* Connect Form */
+.banner-connect {
+  margin-top: 12px;
+}
+
+.connect-form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.org-input {
+  padding: 8px 14px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  width: 300px;
+}
+
+.org-input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
+}
+
+.btn-connect {
+  padding: 8px 16px;
+  border: 1px solid var(--accent-blue);
+  border-radius: var(--radius);
+  background: rgba(88, 166, 255, 0.1);
+  color: var(--accent-blue);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.btn-connect:hover {
+  background: rgba(88, 166, 255, 0.2);
+}
+
+.connect-status {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+}
+
+.connect-status.loading { color: var(--accent-blue); }
+.connect-status.success { color: var(--accent-green); }
+.connect-status.error { color: var(--accent-red); }
+
 /* Responsive */
 @media (max-width: 768px) {
   .view { padding: 16px; }
