@@ -1,0 +1,73 @@
+name: "Milestone 5: Open a Pull Request"
+description: "Propose your changes for review — learn collaboration and quality gates"
+title: "Milestone 5: Open a Pull Request"
+labels: ["milestone", "collaboration"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🔀 Milestone 5: Open a Pull Request
+
+        A Pull Request (PR) is how you propose changes for review. It's the collaboration layer that makes GitHub different from just "hosting code."
+
+        **💡 Why this matters**: PRs are where code review, automated checks, and team discussion converge. For customers, PRs are quality gates — nothing reaches production without passing review. This is the feature that turns individual coding into team collaboration.
+
+        ---
+
+        ### What to do
+
+        **Step 1** — Go to your repository on GitHub.com. You should see a yellow banner:
+
+        > `feature/webhook-handler had recent pushes — Compare & pull request`
+
+        Click **Compare & pull request**.
+
+        *(If you don't see the banner, go to the **Pull requests** tab → **New pull request** → set "compare" to `feature/webhook-handler`)*
+
+        **Step 2** — Fill in the PR form:
+
+        > **Title**: `feat: add webhook handler for form submissions`
+        >
+        > **Body**:
+        > ```
+        > ## Summary
+        > Adds a POST /webhook endpoint that receives payloads and sends Slack notifications.
+        >
+        > ## Changes
+        > - `src/webhook.js` — HTTP handler with payload validation
+        > - `src/notify.js` — Slack notification sender
+        >
+        > ## Testing
+        > Tested locally with curl (see Milestone 3).
+        >
+        > Closes #2
+        > ```
+
+        > ⚠️ **Important**: The `Closes #2` line automatically links and closes your Issue from Milestone 2 when the PR is merged. Replace `#2` with your actual issue number.
+
+        **Step 3** — Click **Create pull request**.
+
+        ✅ **What success looks like**: Your PR appears with a timeline showing your commits. If Actions are configured, you'll see status checks start running (green tick or yellow spinner).
+
+  - type: checkboxes
+    id: pr-tasks
+    attributes:
+      label: Checklist
+      options:
+        - label: Opened a Pull Request from my feature branch
+        - label: Wrote a clear description with summary and changes
+        - label: "Referenced my Issue with `Closes #N`"
+        - label: I can see the PR on the Pull Requests tab
+
+  - type: textarea
+    id: pr-number
+    attributes:
+      label: What PR number did you get?
+      placeholder: "#3"
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### ➡️ Next Step
+        Move on to **Milestone 6: Code Review** — create a new Issue using that template.

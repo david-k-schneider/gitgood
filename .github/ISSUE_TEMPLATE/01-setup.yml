@@ -1,38 +1,64 @@
 name: "Milestone 1: Setup Complete"
-description: "Track your progress on forking, cloning, and running the project"
+description: "Verify your Codespace works and the app starts — the foundation for everything"
 title: "Milestone 1: Setup Complete"
 labels: ["milestone", "setup"]
 body:
   - type: markdown
     attributes:
       value: |
-        ## 🚀 Milestone 1: Fork & Setup
+        ## 🚀 Milestone 1: Setup Complete
 
-        Complete the steps below to get the project running on your machine.
+        Let's confirm your environment works. You should already be in a Codespace (if not, go back to the README).
 
-        **💡 Sales Context**: Repositories are the atomic unit of GitHub. Every customer conversation starts here. When you fork a repo, you're creating an independent copy — this is how open source contribution works, and how GitHub enables collaboration across organizational boundaries.
+        **💡 Why this matters**: Repositories + Codespaces = instant development environments. Customers spend weeks onboarding developers to new projects. With Codespaces, a new team member clicks one button and is coding in 60 seconds. Zero setup, zero "works on my machine."
+
+        ---
+
+        ### What to do
+
+        **Step 1** — In your Codespace terminal (bottom of screen), run:
+        ```bash
+        npm install
+        ```
+        ✅ **Expected output** (last few lines):
+        ```
+        added 45 packages in 3s
+        ```
+
+        **Step 2** — Start the server:
+        ```bash
+        npm start
+        ```
+        ✅ **Expected output**:
+        ```
+        🚀 GitGood server running on port 3000
+        Health check: http://localhost:3000/health
+        ```
+
+        **Step 3** — Open a second terminal (click the `+` icon in the terminal panel) and run:
+        ```bash
+        curl http://localhost:3000/health
+        ```
+        ✅ **Expected output**:
+        ```json
+        {"status":"ok","timestamp":"2024-..."}
+        ```
+
+        If you see this, everything is working. You can stop the server with `Ctrl+C` in the first terminal.
 
   - type: checkboxes
     id: setup-tasks
     attributes:
-      label: Setup Checklist
+      label: Checklist
       options:
-        - label: Forked this repository to my GitHub account
-        - label: Cloned my fork locally (`git clone ...`)
-        - label: Ran `npm install` successfully
-        - label: Ran `npm start` and saw the server start message
-        - label: Visited `http://localhost:3000/health` and saw the health check response
-
-  - type: textarea
-    id: observations
-    attributes:
-      label: What did you notice?
-      description: "Jot down anything interesting, confusing, or worth discussing with your team."
-      placeholder: "e.g., I noticed the project has a .github folder with workflows..."
+        - label: "`npm install` completed without errors"
+        - label: "`npm start` showed the server running message"
+        - label: "Health check returned `{\"status\":\"ok\"}`"
+        - label: "I know how to open a new terminal tab (the `+` icon)"
 
   - type: markdown
     attributes:
       value: |
         ---
         ### ➡️ Next Step
-        When you've checked all the boxes, move on to **Milestone 2: Plan with Issues** — create a new Issue using that template.
+        Move on to **Milestone 2: Plan with Issues** — go to Issues tab → New issue → pick that template.

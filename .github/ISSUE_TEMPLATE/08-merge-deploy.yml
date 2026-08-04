@@ -1,0 +1,54 @@
+name: "Milestone 8: Merge & Deploy"
+description: "Merge your PR and see deployment in action — learn shipping with confidence"
+title: "Milestone 8: Merge & Deploy"
+labels: ["milestone", "deployment"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🚀 Milestone 8: Merge & Deploy
+
+        Your code is reviewed, CI passed, and now it's time to merge. This is the moment code goes from "proposed" to "official."
+
+        **💡 Why this matters**: Merging a PR is the point where a feature becomes part of the product. In enterprise teams, this triggers deployment pipelines, updates changelogs, and closes linked Issues automatically. The entire lifecycle — plan → code → review → ship — happens in one platform with full traceability.
+
+        ---
+
+        ### What to do
+
+        **Step 1** — Open your Pull Request from Milestone 5.
+
+        **Step 2** — Scroll to the bottom. You should see:
+        - ✅ All status checks passed
+        - A green **Merge pull request** button
+
+        **Step 3** — Click **Merge pull request** → **Confirm merge**.
+
+        ✅ **What success looks like**:
+        - The PR status changes to **Merged** (purple icon)
+        - The linked Issue (from `Closes #2`) automatically closes
+        - A new Actions workflow may trigger (deployment)
+
+        **Step 4** — Go back to your **Issues** tab. Confirm your feature Issue now shows as **Closed** with a purple "merged" reference.
+
+        **Step 5** — Check the **Actions** tab again. Look for any deployment workflow that ran after the merge.
+
+        > 💡 **Branch protection in practice**: In enterprise settings, teams configure "branch protection rules" that *require* passing CI and at least one approval before the merge button becomes available. This is how regulated industries enforce their controls.
+
+  - type: checkboxes
+    id: merge-tasks
+    attributes:
+      label: Checklist
+      options:
+        - label: All status checks are green on my PR
+        - label: Clicked "Merge pull request" and confirmed
+        - label: PR shows as Merged (purple)
+        - label: My linked Issue auto-closed
+        - label: (Optional) Saw a deployment workflow trigger in Actions
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### ➡️ Next Step
+        Move on to **Milestone 9: Security Scanning** — create a new Issue using that template.

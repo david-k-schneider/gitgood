@@ -1,0 +1,54 @@
+name: "Milestone 6: Code Review"
+description: "Review code and get feedback — learn quality gates and knowledge sharing"
+title: "Milestone 6: Code Review"
+labels: ["milestone", "review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 👀 Milestone 6: Code Review
+
+        Code review is where teams catch bugs, share knowledge, and maintain quality standards before code reaches production.
+
+        **💡 Why this matters**: Code review is the #1 reason engineering leaders adopt GitHub. It prevents defects, spreads knowledge across the team, and creates an auditable approval trail. Customers in regulated industries (finance, healthcare, government) require mandatory reviews before any merge.
+
+        ---
+
+        ### What to do
+
+        **Step 1** — Open your Pull Request from Milestone 5.
+
+        **Step 2** — Click on the **Files changed** tab. This shows a "diff" — green lines are additions, red lines are removals.
+
+        **Step 3** — Try leaving a review comment:
+        - Hover over any line of code
+        - Click the blue **+** icon that appears
+        - Type a comment like: `Should we add rate limiting here to prevent abuse?`
+        - Click **Start a review** (not "Add single comment")
+        - Click **Finish your review** → select **Comment** → **Submit review**
+
+        ✅ **What success looks like**: Your comment appears inline on the code, and the PR timeline shows "reviewed."
+
+        **Step 4** — If a teammate is also doing GitGood, invite them to review your PR:
+        - On the PR page, click **Reviewers** in the right sidebar
+        - Add their username
+        - They'll get a notification to review
+
+        > 💡 **Copilot Code Review**: GitHub Copilot can also review PRs automatically — it suggests improvements, catches bugs, and explains complex code. This is the "Copilot for Pull Requests" feature.
+
+  - type: checkboxes
+    id: review-tasks
+    attributes:
+      label: Checklist
+      options:
+        - label: Viewed the "Files changed" tab on my PR
+        - label: Left at least one inline review comment
+        - label: Submitted a review (Comment, Approve, or Request Changes)
+        - label: (Optional) Requested a review from a teammate
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### ➡️ Next Step
+        Move on to **Milestone 7: CI with Actions** — create a new Issue using that template.

@@ -1,0 +1,78 @@
+name: "Milestone 9: Security Scanning"
+description: "Explore GitHub's security features — learn GHAS, secret scanning, and Dependabot"
+title: "Milestone 9: Security Scanning"
+labels: ["milestone", "security", "ghas"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🔒 Milestone 9: Security Scanning
+
+        GitHub Advanced Security (GHAS) finds vulnerabilities, leaked secrets, and insecure dependencies automatically. You'll explore what's already running on your repo.
+
+        **💡 Why this matters**: Security is the fastest-growing part of GitHub's platform. GHAS lets developers fix vulnerabilities where they work (in the PR, not weeks later in a separate tool). Customers who adopt GHAS typically fix vulnerabilities 7x faster because the feedback loop is immediate.
+
+        ---
+
+        ### What to do
+
+        **Step 1** — Go to the **Security** tab in your repository.
+
+        You'll see sections for:
+        - **Dependabot alerts** — vulnerable dependencies
+        - **Code scanning** — bugs and vulnerabilities in your code
+        - **Secret scanning** — leaked API keys, tokens, passwords
+
+        **Step 2** — Click into **Dependabot alerts** (if any exist):
+        - Each alert shows the vulnerable package, severity, and a fix
+        - Click one to see the details and the suggested version upgrade
+        - Notice you can auto-fix with one click ("Create Dependabot security update")
+
+        **Step 3** — Check **Code scanning alerts** (if enabled):
+        - These come from CodeQL, GitHub's semantic code analysis engine
+        - Each alert shows the exact line of code with the vulnerability
+        - Click one to see the explanation and remediation guidance
+
+        **Step 4** — Check **Secret scanning**:
+        - If any secrets were accidentally committed, they'd appear here
+        - GitHub scans for 200+ secret types (AWS keys, Slack tokens, etc.)
+        - Push protection *blocks* the commit entirely if a secret is detected
+
+        > 💡 **The GHAS pitch in one line**: "Find and fix vulnerabilities where developers already work — in the pull request — instead of discovering them weeks later in a separate security tool."
+
+        ---
+
+        ### Try it yourself (optional but powerful)
+
+        Create a test file to trigger a secret scanning alert:
+        ```bash
+        echo 'SLACK_TOKEN=xoxb-fake-token-for-testing-1234567890' > test-secret.txt
+        git add test-secret.txt
+        git commit -m "test: trigger secret scanning"
+        git push
+        ```
+        Then check the Security tab — you should see an alert within a few minutes. **Delete the file after** (`git rm test-secret.txt`).
+
+  - type: checkboxes
+    id: security-tasks
+    attributes:
+      label: Checklist
+      options:
+        - label: Visited the Security tab in my repository
+        - label: Reviewed Dependabot alerts (if any exist)
+        - label: Checked Code scanning alerts (if enabled)
+        - label: Reviewed Secret scanning settings
+        - label: (Optional) Triggered a test secret scanning alert and saw it detected
+
+  - type: textarea
+    id: security-observation
+    attributes:
+      label: What security features did you see active on your repo?
+      placeholder: "e.g., I saw 2 Dependabot alerts for outdated packages and secret scanning was enabled..."
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### ➡️ Next Step
+        You're almost done! Move on to **Milestone 10: Graduation** — create a new Issue using that template.

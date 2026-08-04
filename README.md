@@ -1,79 +1,102 @@
 # 🎯 GitGood
 
-**Learn GitHub by building something real.**
+**Learn GitHub by building something real. No coding experience needed — Copilot does the heavy lifting.**
 
-GitGood is a hands-on learning environment where you pick a project, use GitHub Copilot to build it, and experience every part of the GitHub platform along the way. No prior coding experience required; Copilot does the heavy lifting. You just need curiosity.
+---
 
-## How It Works
+## 🚀 START HERE (3 steps, 2 minutes)
 
-1. **Pick a use case** from the catalog
-2. **Say**: `I need to GitGood [use-case]`
-3. **Build** with Copilot guiding you through the code
-4. **Learn** as contextual explainers fire at every stage
-5. **Graduate** with hands-on experience you can bring to every customer conversation
+### 1. Create your copy
 
-## Pick Your Project
+Click the green **"Use this template"** button (top right) → **Create a new repository**.
 
-| Use Case | What You'll Build | Difficulty |
-|----------|------------------|-----------|
-| 🔌 **[webhook-connector](USE_CASES.md#-use-case-1-webhook-connector)** | A service that relays events to Slack | ⭐⭐ |
-| 📊 **[deal-dashboard](USE_CASES.md#-use-case-2-deal-signal-dashboard)** | A live web dashboard with deal signals | ⭐⭐⭐ |
-| 🤖 **[meeting-prep](USE_CASES.md#-use-case-3-meeting-prep-bot)** | A CLI tool that auto-generates meeting briefs | ⭐⭐⭐ |
-| 📝 **[standup-bot](USE_CASES.md#-use-case-4-team-standup-collector)** | A daily standup collector with Slack digest | ⭐⭐ |
-| 🔒 **[secret-vault](USE_CASES.md#-use-case-5-secret-vault-api)** | An encrypted key-value API (surfaces GHAS) | ⭐⭐⭐ |
-| 🌐 **[portfolio-site](USE_CASES.md#-use-case-6-personal-portfolio-site)** | A personal portfolio deployed on GitHub Pages | ⭐ |
+- Owner: your personal account
+- Name: `gitgood` (or anything you like)
+- Visibility: **Public** (required for some features)
+- Click **Create repository**
 
-> **Not sure?** Start with **webhook-connector** (the default). It's practical, approachable, and what your customers build every day.
+> ⚠️ **Do NOT fork.** Forks don't copy Issues/templates properly. Always use "Use this template."
 
-See **[USE_CASES.md](USE_CASES.md)** for detailed descriptions of each project.
+### 2. Open a Codespace
 
-## What You'll Learn
+On YOUR new repo, click the green **Code** button → **Codespaces** tab → **Create codespace on main**.
 
-By the end of this journey, you'll have first-hand experience with:
+This gives you a full development environment in your browser. No local installs needed.
 
-| Feature | What You'll Do | Why Customers Care |
-|---------|---------------|-------------------|
-| **Repositories** | Fork this repo, clone it locally | Central source of truth for all code |
-| **Issues** | Plan your work with Issues | Project tracking integrated with code |
-| **Branching** | Create a feature branch | Parallel work without breaking production |
-| **Copilot** | Generate code with AI pair programming | 55% faster task completion for developers |
-| **Commits** | Save your work with meaningful history | Full auditability and rollback capability |
-| **Pull Requests** | Propose changes for review | Quality gates before code reaches production |
-| **Actions** | Run automated tests on every push | CI/CD that lives alongside the code |
-| **Code Review** | Review and approve changes | Knowledge sharing and defect prevention |
-| **Security** | Scan for vulnerabilities and secrets | Shift-left security without extra tools |
-| **Deployment** | Merge and deploy your integration | Ship with confidence |
+✅ **What success looks like**: A VS Code-like editor opens in your browser with the terminal at the bottom.
 
-## Getting Started
+### 3. Start the app
 
-### Prerequisites
-- A GitHub account with Copilot enabled
-- [Node.js](https://nodejs.org/) installed (v18 or later)
-- A code editor (VS Code recommended, with the GitHub Copilot extension)
-
-### Step 1: Fork This Repository
-
-Click the **Fork** button in the top right. This creates your own copy to work in.
-
-> 💡 **Sales context**: Forking is how open source contributors propose changes. Enterprise customers use organization-owned repos and branching instead, but the collaboration model is the same.
-
-### Step 2: Clone and Setup
+In the Codespace terminal at the bottom, type:
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/gitgood.git
-cd gitgood
-npm install
+npm install && npm start
 ```
 
-### Step 3: Pick Your Use Case
+✅ **Expected output**:
+```
+> gitgood@1.0.0 start
+> node src/index.js
 
-Choose a project from the table above, then open your first Issue using the matching template. The learning path adapts to your choice.
+🚀 GitGood server running on port 3000
+Health check: http://localhost:3000/health
+```
 
-### Step 4: Follow the Learning Path
+**That's it. You're ready to go.**
 
-Each milestone builds on the last. See **[LEARNING_PATH.md](LEARNING_PATH.md)** for the full journey.
+---
 
-As you complete each step, GitHub Actions will post **contextual explainer comments** on your Issues and PRs, translating what just happened into customer value language.
+## 📋 The Learning Path (10 milestones)
+
+Everything is done through **Issues**. Each milestone is a template that tells you exactly what to do.
+
+Go to your repo's **Issues** tab → **New issue** → pick the next milestone template.
+
+| # | Milestone | What You'll Do | Platform Feature |
+|---|-----------|---------------|-----------------|
+| 1 | Setup Complete | Verify your Codespace works | Repos, Codespaces |
+| 2 | Plan with Issues | Write a feature request Issue | Issues, Labels |
+| 3 | Branch & Build | Write code with Copilot | Branching, Copilot |
+| 4 | First Commit | Save and push your code | Git, Audit Trail |
+| 5 | Pull Request | Propose changes for review | PRs, Linking |
+| 6 | Code Review | Review code inline | Reviews, Quality |
+| 7 | CI with Actions | Watch automated tests run | Actions, CI/CD |
+| 8 | Merge & Deploy | Ship to production | Deployment |
+| 9 | Security Scanning | Explore GHAS features | Security, GHAS |
+| 10 | Graduation | Reflect and certify | 🎓 |
+
+**Do them in order.** Each one takes 5-15 minutes. The whole path takes about 2 hours.
+
+> 💡 Every template includes exact commands to type, expected output, and a "Why this matters" explainer so you can connect what you're doing to customer conversations.
+
+---
+
+## 🎯 What You're Building
+
+A **webhook connector** — a small Node.js service that receives events from external tools (like MS Forms) and sends notifications to Slack.
+
+This is the most common integration pattern your customers build. By the end, you'll have built one yourself using every major GitHub feature.
+
+Want a different project? See **[USE_CASES.md](USE_CASES.md)** for alternatives (dashboard, bot, portfolio site, etc.)
+
+---
+
+## ❓ Troubleshooting
+
+| Problem | Fix |
+|---------|-----|
+| "Use this template" button missing | Ask the repo owner to mark it as a template (Settings → Template repository) |
+| Codespace won't start | Check you have Codespace access. Try: Code → Codespaces → Create |
+| `npm install` fails | Run `node --version` — need v18+. In Codespace this should be automatic |
+| Issue templates not showing | Make sure you used "Use this template", NOT "Fork" |
+| Only see some milestone templates | You're on a fork. Delete it, use the template button instead |
+
+---
+
+## 📚 More Detail
+
+- **[LEARNING_PATH.md](LEARNING_PATH.md)** — deeper context for each milestone
+- **[USE_CASES.md](USE_CASES.md)** — alternative project ideas beyond webhook-connector
 
 ---
 

@@ -1,0 +1,64 @@
+name: "Milestone 7: CI with Actions"
+description: "Watch automated tests run on your code — learn CI/CD and automation"
+title: "Milestone 7: CI with Actions"
+labels: ["milestone", "actions", "automation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ⚙️ Milestone 7: CI with Actions
+
+        GitHub Actions runs automated checks every time you push code. This is Continuous Integration (CI) — catching problems before they reach production.
+
+        **💡 Why this matters**: Actions is GitHub's built-in CI/CD. Unlike Jenkins or CircleCI, it lives alongside the code with no external infrastructure to manage. Customers typically see 40-60% reduction in build/deploy time after switching. It's also the platform's largest revenue driver after seats.
+
+        ---
+
+        ### What to do
+
+        **Step 1** — Go to the **Actions** tab in your repository.
+
+        You should see a workflow run triggered by your push or PR. Look for a run named after your commit message (e.g., "feat: add webhook handler...").
+
+        ✅ **What success looks like**: A workflow run with a green ✅ (pass) or red ❌ (fail) next to it.
+
+        **Step 2** — Click into the workflow run to see the details:
+        - Each "job" is a step in the automation
+        - Click into a job to see the live logs
+        - Look for the test output (e.g., "3 tests passed")
+
+        **Step 3** — Go back to your Pull Request. You should see status checks at the bottom:
+        - ✅ `CI / test` — passed
+        - This green check tells the reviewer "this code is safe to merge"
+
+        **Step 4** — Look at the workflow file that powers this:
+        ```
+        .github/workflows/ci.yml
+        ```
+        Open it in your editor. Notice how it's just YAML describing: "on push, run these tests."
+
+        > 💡 **Key insight for customers**: Actions uses a marketplace of 20,000+ reusable actions. Teams don't build automation from scratch — they compose it from community and first-party building blocks.
+
+  - type: checkboxes
+    id: actions-tasks
+    attributes:
+      label: Checklist
+      options:
+        - label: Found the Actions tab and saw a workflow run
+        - label: Clicked into a run and read the logs
+        - label: Saw the status check appear on my Pull Request
+        - label: "Opened `.github/workflows/ci.yml` and understand the structure"
+
+  - type: textarea
+    id: actions-observation
+    attributes:
+      label: What did the workflow do?
+      description: "In your own words, describe what the CI workflow tested."
+      placeholder: "e.g., It ran npm install, then npm test, which checked that the webhook endpoint returns 200..."
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### ➡️ Next Step
+        Move on to **Milestone 8: Merge & Deploy** — create a new Issue using that template.

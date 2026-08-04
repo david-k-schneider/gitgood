@@ -1,0 +1,69 @@
+name: "Milestone 2: Plan with Issues"
+description: "Create an Issue to plan your feature — learn how teams track work on GitHub"
+title: "Milestone 2: Plan with Issues"
+labels: ["milestone", "planning"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📋 Milestone 2: Plan with Issues
+
+        You're going to create an Issue that describes the feature you'll build. This is how real development teams plan work.
+
+        **💡 Why this matters**: Issues are GitHub's built-in project tracker. Unlike external tools, Issues live *alongside* the code. When a developer mentions `#3` in a commit, the Issue and code automatically link. Customers love this traceability — no more "which Jira ticket was that change for?"
+
+        ---
+
+        ### What to do
+
+        **Step 1** — Go to the **Issues** tab in your repo and click **New issue** (blank issue, not a template).
+
+        **Step 2** — Fill it in exactly like this:
+
+        > **Title**: `Add webhook endpoint to receive form submissions`
+        >
+        > **Body**:
+        > ```
+        > ## What
+        > Build an HTTP endpoint that receives webhook payloads and forwards them to Slack.
+        >
+        > ## Why
+        > This connects external services (like MS Forms) to internal chat — a common integration pattern.
+        >
+        > ## Acceptance Criteria
+        > - [ ] POST /webhook returns 200 on valid payload
+        > - [ ] Invalid payloads return 400
+        > - [ ] Successful payloads trigger a Slack notification
+        > ```
+
+        **Step 3** — On the right sidebar:
+        - Click **Labels** → add `enhancement`
+        - Click **Assignees** → assign yourself
+
+        **Step 4** — Click **Submit new issue**
+
+        ✅ **What success looks like**: You should see your new Issue at the top of the Issues tab with a number (e.g., `#2`) and your labels applied.
+
+  - type: checkboxes
+    id: planning-tasks
+    attributes:
+      label: Checklist
+      options:
+        - label: Created a new Issue with a descriptive title and body
+        - label: Added at least one label
+        - label: Assigned myself
+        - label: I can see the Issue number (e.g. #2) in the Issues tab
+
+  - type: textarea
+    id: issue-number
+    attributes:
+      label: What Issue number did you get?
+      description: "Paste the number here — you'll reference it later when you open a Pull Request."
+      placeholder: "#2"
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### ➡️ Next Step
+        Move on to **Milestone 3: Branch & Build with Copilot** — create a new Issue using that template.

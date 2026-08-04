@@ -1,0 +1,76 @@
+name: "Milestone 4: First Commit"
+description: "Commit your code and push it — learn version control and audit trails"
+title: "Milestone 4: First Commit"
+labels: ["milestone", "git"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 💾 Milestone 4: First Commit
+
+        You've written code with Copilot. Now save it properly with Git.
+
+        **💡 Why this matters**: Every commit is a permanent record — who changed what, when, and why. Enterprise customers rely on this audit trail for compliance (SOC2, HIPAA, FedRAMP). It also means any mistake can be rolled back to a known-good state in seconds.
+
+        ---
+
+        ### What to do
+
+        Open your terminal (inside the Codespace or locally) and run these commands one at a time:
+
+        **Step 1** — Check what changed:
+        ```bash
+        git status
+        ```
+        ✅ **Expected output**:
+        ```
+        On branch feature/webhook-handler
+        Changes not staged for commit:
+            modified:   src/webhook.js
+            modified:   src/notify.js
+        ```
+
+        **Step 2** — Stage your files:
+        ```bash
+        git add .
+        ```
+        *(No output means it worked)*
+
+        **Step 3** — Commit with a descriptive message:
+        ```bash
+        git commit -m "feat: add webhook handler for form submissions"
+        ```
+        ✅ **Expected output**:
+        ```
+        [feature/webhook-handler abc1234] feat: add webhook handler for form submissions
+         2 files changed, 45 insertions(+)
+        ```
+
+        **Step 4** — Push to your fork:
+        ```bash
+        git push origin feature/webhook-handler
+        ```
+        ✅ **Expected output**:
+        ```
+        To https://github.com/YOUR-USERNAME/gitgood.git
+         * [new branch]      feature/webhook-handler -> feature/webhook-handler
+        ```
+
+        > 💡 **Tip**: The `feat:` prefix is called a "conventional commit." It helps teams auto-generate changelogs. Other common prefixes: `fix:`, `docs:`, `test:`.
+
+  - type: checkboxes
+    id: commit-tasks
+    attributes:
+      label: Checklist
+      options:
+        - label: "Ran `git status` and saw my changed files"
+        - label: "Staged changes with `git add .`"
+        - label: "Committed with a descriptive message"
+        - label: "Pushed to my fork and saw the branch appear on GitHub"
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### ➡️ Next Step
+        Move on to **Milestone 5: Open a Pull Request** — create a new Issue using that template.
