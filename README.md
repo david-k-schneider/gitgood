@@ -4,7 +4,7 @@
 
 ---
 
-## 🚀 START HERE (3 steps, 2 minutes)
+## 🚀 SETUP (one-time, 2 minutes)
 
 ### 1. Create your copy
 
@@ -21,13 +21,11 @@ Click the green **"Use this template"** button (top right) → **Create a new re
 
 On YOUR new repo, click the green **Code** button → **Codespaces** tab → **Create codespace on main**.
 
-This gives you a full development environment in your browser. No local installs needed.
-
-✅ **What success looks like**: A VS Code-like editor opens in your browser with the terminal at the bottom.
+✅ **Success**: A VS Code-like editor opens in your browser with a terminal at the bottom.
 
 ### 3. Start the app
 
-In the Codespace terminal at the bottom, type:
+In the terminal, type:
 
 ```bash
 npm install && npm start
@@ -35,49 +33,52 @@ npm install && npm start
 
 ✅ **Expected output**:
 ```
-> gitgood@1.0.0 start
-> node src/index.js
-
 🚀 GitGood server running on port 3000
 Health check: http://localhost:3000/health
 ```
 
-**That's it. You're ready to go.**
+---
+
+## ▶️ START YOUR JOURNEY
+
+Your launchpad is the **Issues** tab. Go there now:
+
+> **Issues** tab → **New issue** → you'll see your milestone menu.
+
+Each milestone is a guided step. Pick them in order. Every one tells you exactly what to type, what to expect, and why it matters.
 
 ---
 
-## 📋 The Learning Path (10 milestones)
+## 🗺️ THE MILESTONE MENU
 
-Everything is done through **Issues**. Each milestone is a template that tells you exactly what to do.
+Click **New issue** and you'll see these 10 milestones. Work through them top to bottom.
 
-Go to your repo's **Issues** tab → **New issue** → pick the next milestone template.
+| | Milestone | Time | What You'll Do | GitHub Feature You'll Learn |
+|---|-----------|------|---------------|----------------------------|
+| 1️⃣ | **Setup Complete** | 5 min | Verify your Codespace runs the app | Repos, Codespaces |
+| 2️⃣ | **Plan with Issues** | 5 min | Write a feature request as an Issue | Issues, Labels, Assignees |
+| 3️⃣ | **Branch & Build** | 15 min | Create a branch, write code with Copilot | Branching, Copilot |
+| 4️⃣ | **First Commit** | 5 min | Save your code and push it | Git, Commits, Audit Trail |
+| 5️⃣ | **Pull Request** | 10 min | Propose your changes for review | PRs, Issue Linking |
+| 6️⃣ | **Code Review** | 10 min | Leave review comments on code | Reviews, Quality Gates |
+| 7️⃣ | **CI with Actions** | 10 min | Watch automated tests run on your PR | Actions, CI/CD |
+| 8️⃣ | **Merge & Deploy** | 5 min | Merge your PR and ship it | Deployment, Branch Protection |
+| 9️⃣ | **Security Scanning** | 10 min | Explore vulnerability and secret detection | GHAS, Dependabot, CodeQL |
+| 🔟 | **Graduation** | 10 min | Reflect on what you learned, write your pitch | 🎓 Certification |
 
-| # | Milestone | What You'll Do | Platform Feature |
-|---|-----------|---------------|-----------------|
-| 1 | Setup Complete | Verify your Codespace works | Repos, Codespaces |
-| 2 | Plan with Issues | Write a feature request Issue | Issues, Labels |
-| 3 | Branch & Build | Write code with Copilot | Branching, Copilot |
-| 4 | First Commit | Save and push your code | Git, Audit Trail |
-| 5 | Pull Request | Propose changes for review | PRs, Linking |
-| 6 | Code Review | Review code inline | Reviews, Quality |
-| 7 | CI with Actions | Watch automated tests run | Actions, CI/CD |
-| 8 | Merge & Deploy | Ship to production | Deployment |
-| 9 | Security Scanning | Explore GHAS features | Security, GHAS |
-| 10 | Graduation | Reflect and certify | 🎓 |
+**Total time: ~90 minutes**
 
-**Do them in order.** Each one takes 5-15 minutes. The whole path takes about 2 hours.
-
-> 💡 Every template includes exact commands to type, expected output, and a "Why this matters" explainer so you can connect what you're doing to customer conversations.
+> 💡 Each template includes: exact commands to copy-paste, expected terminal output, a ✅ success indicator, a "Why this matters" business explainer, and a direct link to the next step.
 
 ---
 
 ## 🎯 What You're Building
 
-A **webhook connector** — a small Node.js service that receives events from external tools (like MS Forms) and sends notifications to Slack.
+A **webhook connector** — a small service that receives events from external tools (like MS Forms or Stripe) and sends notifications to Slack.
 
-This is the most common integration pattern your customers build. By the end, you'll have built one yourself using every major GitHub feature.
+This is the most common integration pattern your customers build. By the end, you'll have built one yourself using every major GitHub feature along the way.
 
-Want a different project? See **[USE_CASES.md](USE_CASES.md)** for alternatives (dashboard, bot, portfolio site, etc.)
+> 🔀 Want a different project? See **[USE_CASES.md](USE_CASES.md)** for alternatives (dashboard, bot, portfolio site). You'll choose at Milestone 3.
 
 ---
 
@@ -86,17 +87,17 @@ Want a different project? See **[USE_CASES.md](USE_CASES.md)** for alternatives 
 | Problem | Fix |
 |---------|-----|
 | "Use this template" button missing | Ask the repo owner to mark it as a template (Settings → Template repository) |
-| Codespace won't start | Check you have Codespace access. Try: Code → Codespaces → Create |
-| `npm install` fails | Run `node --version` — need v18+. In Codespace this should be automatic |
-| Issue templates not showing | Make sure you used "Use this template", NOT "Fork" |
-| Only see some milestone templates | You're on a fork. Delete it, use the template button instead |
+| Codespace won't start | Check you have Codespace access enabled |
+| `npm install` fails | Run `node --version` — need v18+. In Codespace this is automatic |
+| Issue templates not showing | You forked instead of using the template. Delete your fork, use "Use this template" |
+| Can't find the milestone menu | Go to **Issues** tab → click **New issue** |
 
 ---
 
-## 📚 More Detail
+## 📚 Deep Dives (optional reading)
 
-- **[LEARNING_PATH.md](LEARNING_PATH.md)** — deeper context for each milestone
-- **[USE_CASES.md](USE_CASES.md)** — alternative project ideas beyond webhook-connector
+- **[LEARNING_PATH.md](LEARNING_PATH.md)** — extended context and background for each milestone
+- **[USE_CASES.md](USE_CASES.md)** — alternative project ideas (choose at Milestone 3)
 
 ---
 
@@ -104,17 +105,11 @@ Want a different project? See **[USE_CASES.md](USE_CASES.md)** for alternatives 
 
 This sandbox is instrumented with GitHub Actions that watch for key events:
 
-- **Open an Issue** → You'll get an explainer about project planning on GitHub
-- **Create a branch** → You'll learn about branching strategies and parallel development
-- **Open a PR** → You'll see how code review and collaboration work
-- **CI runs** → You'll understand automated testing and deployment pipelines
-- **Security scan triggers** → You'll experience GHAS in action
-
-Each explainer includes:
-- 🔍 **What just happened** (the technical action)
-- 💼 **Why customers care** (the business value)
-- 🎯 **Talk track** (how to position this in a conversation)
-- ➡️ **Next step** (what to do next in your learning path)
+- **Open an Issue** → explainer about project planning
+- **Create a branch** → explainer about branching strategies
+- **Open a PR** → explainer about collaboration
+- **CI runs** → explainer about automation
+- **Security scan** → explainer about GHAS
 
 ---
 
@@ -122,19 +117,13 @@ Each explainer includes:
 
 ```
 src/
-├── index.js       → Entry point (start here)
-├── webhook.js     → Webhook receiver (Copilot will help you build this)
-└── notify.js      → Slack notifier (Copilot will help you build this)
+├── index.js       → Entry point (already works)
+├── webhook.js     → Webhook receiver (you'll build this with Copilot)
+└── notify.js      → Slack notifier (you'll build this with Copilot)
 
 tests/
-└── webhook.test.js → Automated tests (experience CI in action)
+└── webhook.test.js → Automated tests (triggers CI)
 ```
-
-## Need Help?
-
-- Use **GitHub Copilot** in your editor; it's context-aware and knows this project
-- Check the **[docs/explainers/](docs/explainers/)** folder for deep-dive feature guides
-- Open a Discussion in this repo to ask questions
 
 ---
 
